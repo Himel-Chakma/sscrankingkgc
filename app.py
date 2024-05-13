@@ -16,7 +16,7 @@ def find_rank(roll_number, df):
         return "Roll number not found"
 
 def main():
-    st.title("Roll Number Rank Finder")
+    st.title("SSC-2024 Khagrachari Science Rank Finder")
 
     # Load data
     @st.cache_data(persist=True)
