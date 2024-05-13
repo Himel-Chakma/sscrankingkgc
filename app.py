@@ -10,7 +10,11 @@ def load_data():
 # Function to find rank for a given roll number
 def find_rank(roll_number, df):
     try:
-        rank = df[df['Roll Number'] == roll_number].index[0] + 1  # Add 1 to get the actual rank
+        # Sort the DataFrame by 'Total Number' column in descending order
+        sorted_df = df.sort_values(by='Total Number', ascending=False)
+        
+        # Find the index of the roll number in the sorted DataFrame
+        rank = sorted_df[sorted_df['Roll Number'] == roll_number].index[0] + 1  # Add 1 to get the actual rank
         return rank
     except IndexError:
         return "Roll number not found"
@@ -19,7 +23,6 @@ def main():
     st.title("SSC-2024 Khagrachari Science Rank Finder")
 
     # Load data
-    @st.cache_data(persist=True)
     def load_data_cache():
         return load_data()
     
