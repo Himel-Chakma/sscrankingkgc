@@ -23,6 +23,7 @@ def main():
     st.title("SSC-2024 Khagrachari Science Rank Finder")
 
     # Load data
+    @st.cache_data(persist=True)
     def load_data_cache():
         return load_data()
     
