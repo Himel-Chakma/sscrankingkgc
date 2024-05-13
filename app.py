@@ -34,7 +34,7 @@ def main():
         if st.button("Find Rank"):
             # Find rank
             rank = find_rank(int(roll_number), df)
-            st.write(f"The rank of roll number {roll_number} is: {rank}")
+            st.header(f"The rank of roll number {roll_number} is: {rank}")
 
 if __name__ == "__main__":
     main()
