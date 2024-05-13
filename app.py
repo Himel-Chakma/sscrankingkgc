@@ -22,14 +22,15 @@ def main():
     @st.cache_data(persist=True)
     def load_data_cache():
         return load_data()
+    
     df = load_data_cache()
 
     # User input
-    roll_number = st.number_input("Enter Roll Number:")
+    roll_number = st.text_input("Enter Roll Number:")
     if roll_number:
         if st.button("Find Rank"):
             # Find rank
-            rank = find_rank(roll_number, df)
+            rank = find_rank(int(roll_number), df)
             st.write(f"The rank of roll number {roll_number} is: {rank}")
 
 if __name__ == "__main__":
