@@ -45,12 +45,7 @@ def main():
                 # Find rank
                 rank = find_rank(roll_number_int, df)
                 if rank is not None:
-                    st.markdown(
-                        f"""
-                        <h2>The rank of roll number {roll_number} in {option} group is: <span style="color:red;">{rank}</span></h2>
-                        """, 
-                        unsafe_allow_html=True
-                    )
+                    st.success(f"The rank of roll number {roll_number} in {option} group is: {rank}")
                 else:
                     st.error(f"Roll number {roll_number} not found in {option} group.")
             except ValueError:
