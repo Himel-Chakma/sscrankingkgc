@@ -3,14 +3,11 @@ import pandas as pd
 
 # Load the CSV data into a Pandas DataFrame
 @st.cache_data(persist=True)
-def load_data(option):
-    if option == "Science":
-        df = pd.read_csv("roll_numbers_total.csv")
-    elif option == "Humanities":
-        df = pd.read_csv("roll_numbers_total-hum1.csv")
-    elif option == "Business Studies":
-        df = pd.read_csv("roll_numbers_total-com.csv")
-    return df
+def load_data():
+    df_science = pd.read_csv("roll_numbers_total.csv")
+    df_humanities = pd.read_csv("roll_numbers_total-hum1.csv")
+    df_business = pd.read_csv("roll_numbers_total-com.csv")
+    return df_science, df_humanities, df_business
 
 # Function to find rank for a given roll number
 def find_rank(roll_number, df):
@@ -27,13 +24,21 @@ def find_rank(roll_number, df):
 
 def main():
 
+    # Load all data at once
+    df_science, df_humanities, df_business = load_data()
+
     st.title("SSC-2024 Rank Finder Khagrachari")
 
     # Select box for group selection
     option = st.selectbox("Select Group:", ["Science", "Humanities", "Business Studies"])
 
-    # Load data based on the selected group
-    df = load_data(option)
+    # Choose the DataFrame based on the selected group
+    if option == "Science":
+        df = df_science
+    elif option == "Humanities":
+        df = df_humanities
+    elif option == "Business Studies":
+        df = df_business
 
     # User input
     roll_number = st.text_input("Enter Roll Number:")
